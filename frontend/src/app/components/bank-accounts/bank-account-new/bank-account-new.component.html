@@ -1,0 +1,47 @@
+<form nz-form (ngSubmit)="createCurrentAccount()" >
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" nzRequired>Balance</nz-form-label>
+    <nz-form-control [nzSm]="14" nzErrorTip="Please input balance">
+      <input nz-input  [(ngModel)]="requestBankAccount.initialBalance"  type="number" name="balance">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" nzRequired>Type</nz-form-label>
+    <nz-form-control [nzSm]="14" nzErrorTip="Please select type">
+      <nz-select nzAllowClear placeholder="Select type"  [(ngModel)]="type" name="type">
+        <nz-option nzValue="CurrentAccount" nzLabel="Current Account"></nz-option>
+        <nz-option nzValue="SavingAccount" nzLabel="Saving Account"></nz-option>
+        <nz-option nzValue="OtherType" nzLabel="Other Type"></nz-option>
+      </nz-select>
+    </nz-form-control>
+  </nz-form-item>
+  <div *ngIf="type=='CurrentAccount'; then CurrentAccount else SavingAccount"></div>
+  <ng-template #SavingAccount>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" nzRequired>interestRate</nz-form-label>
+      <nz-form-control [nzSm]="14" nzErrorTip="Please input overdraft">
+        <input nz-input   [(ngModel)]="requestBankAccount.interestRate" type="number" name="interestRate">
+      </nz-form-control>
+    </nz-form-item>
+  </ng-template>
+  <ng-template  #CurrentAccount>
+    <nz-form-item>
+      <nz-form-label [nzSm]="6" nzRequired>Overdraft</nz-form-label>
+      <nz-form-control [nzSm]="14" nzErrorTip="Please input overdraft">
+        <input nz-input   [(ngModel)]="requestBankAccount.overDraft" type="number" name="overDraft">
+      </nz-form-control>
+    </nz-form-item>
+  </ng-template>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" nzRequired>Customer ID</nz-form-label>
+    <nz-form-control [nzSm]="14"  nzErrorTip="Please input customer ID">
+      <input nz-input  [(ngModel)]="requestBankAccount.customerId" name="id" type="number" placeholder="Enter customer ID" >
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary" [nzLoading]="isLoading" type="submit">Create</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

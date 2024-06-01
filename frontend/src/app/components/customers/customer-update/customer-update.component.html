@@ -1,0 +1,22 @@
+<div>
+  <h2>Update Customer</h2>
+  <form nz-form (ngSubmit)="updateCustomer()">
+    <nz-form-item>
+      <nz-form-label>Name</nz-form-label>
+      <nz-form-control>
+        <input nz-input type="text" [(ngModel)]="customer.name" name="name" required>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Email</nz-form-label>
+      <nz-form-control>
+        <input nz-input type="email" [(ngModel)]="customer.email" name="email" required>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Update Customer</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

@@ -13,30 +13,31 @@ import java.util.List;
 @AllArgsConstructor
 @Slf4j
 @CrossOrigin("*")
+@RequestMapping("/api/customers")
 public class CustomerRestController {
     private BankAccountServiceImpl bankAccountService;
-    @GetMapping("/customers")
+    @GetMapping("")
     public List<CustomerDTO> customers(){
         return bankAccountService.listCustomers();
     }
-    @GetMapping("/customers/search")
+    @GetMapping("/search")
     public List<CustomerDTO> searchCustomers(@RequestParam(name = "keyword",defaultValue = "") String keyword){
         return bankAccountService.searchCustomers("%"+keyword+"%");
     }
-    @GetMapping("/customers/{id}")
+    @GetMapping("/{id}")
     public CustomerDTO getCustomer(@PathVariable(name = "id") Long customerId) throws CustomerNotFoundException, CustomerNotFoundException {
         return bankAccountService.getCustomer(customerId);
     }
-    @PostMapping("/customers")
+    @PostMapping("")
     public CustomerDTO saveCustomer(@RequestBody CustomerDTO customerDTO){
         return bankAccountService.saveCustomer(customerDTO);
     }
-    @PutMapping("/customers/{customerId}")
+    @PutMapping("/{customerId}")
     public CustomerDTO updateCustomer(@PathVariable Long customerId, @RequestBody CustomerDTO customerDTO){
         customerDTO.setId(customerId);
         return bankAccountService.updateCustomer(customerDTO);
     }
-    @DeleteMapping("/customers/{id}")
+    @DeleteMapping("/{id}")
     public void deleteCustomer(@PathVariable Long id){
         bankAccountService.deleteCustomer(id);
     }

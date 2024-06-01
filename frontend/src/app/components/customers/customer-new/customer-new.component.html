@@ -1,0 +1,22 @@
+<div>
+  <h2>Add Customer</h2>
+  <form nz-form (ngSubmit)="addCustomer()">
+    <nz-form-item>
+      <nz-form-label>Name</nz-form-label>
+      <nz-form-control>
+        <input nz-input type="text" [(ngModel)]="newCustomer.name" name="name" required>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label>Email</nz-form-label>
+      <nz-form-control>
+        <input nz-input type="email" [(ngModel)]="newCustomer.email" name="email" required>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <button nz-button nzType="primary" type="submit">Add Customer</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
